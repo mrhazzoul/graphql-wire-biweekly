@@ -1,0 +1,40 @@
+<!--
+ - Created by mrhazzoul on 28/6/2023.
+ -->
+
+<!-- Technical Sessions Container -->
+<template>
+    <div class="slds-theme_default slds-p-around_x-large container">
+        <div class="slds-m-bottom_large">
+            <h1 class="slds-text-heading_medium">Bi-weekly Technical Sessions Schedule</h1>
+        </div>
+        <lightning-layout class="slds-gutters">
+            <lightning-layout-item flexibility="auto">
+                <lightning-input label="Presenter/Session" placeholder="Enter the presenter name or session title"
+                                 onchange={handlePresenterNameChange}></lightning-input>
+
+            </lightning-layout-item>
+            <lightning-layout-item flexibility="auto">
+                <lightning-checkbox-group options={options} label="Status" name="status" value={selectedStatuses}
+                                          onchange={handleStatusChange}>
+                </lightning-checkbox-group>
+            </lightning-layout-item>
+        </lightning-layout>
+        
+        <div class="slds-m-top_small">
+            <lightning-spinner lwc:if={isLoading} variant="brand" alternative-text="Loading"></lightning-spinner>
+            <div lwc:if={technicalSessions}>
+                <template for:each={technicalSessions} for:item="technicalSession">
+                    <c-technical-session-card key={technicalSession.id}
+                                              technical-session={technicalSession}></c-technical-session-card>
+                </template>
+            </div>
+            <div lwc:else>
+                <c-empty-state title="Looks like there are no technical sessions"
+                               message="Try broadening your search"></c-empty-state>
+            </div>
+        </div>
+    </div>
+
+
+</template>

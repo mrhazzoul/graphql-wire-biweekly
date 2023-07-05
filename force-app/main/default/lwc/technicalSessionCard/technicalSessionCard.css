@@ -1,0 +1,39 @@
+/**
+ * Created by mrhazzoul on 29/6/2023.
+ */
+.card-container {
+    min-height: 100px
+}
+
+.session-title {
+    color: cadetblue;
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.presenter-name {
+    font-weight: 500;
+}
+
+.divider {
+    border-top: 1px solid #bbb;
+    opacity: .5;
+}
+
+.badge-canceled {
+    --slds-c-badge-color-background: red;
+    --slds-c-badge-text-color: white;
+    --slds-c-badge-icon-color-foreground: white;
+}
+
+.badge-done {
+    --slds-c-badge-color-background: #269126;
+    --slds-c-badge-text-color: white;
+    --slds-c-badge-icon-color-foreground: white;
+}
+
+.badge-in-progress {
+    --slds-c-badge-color-background: lightseagreen;
+    --slds-c-badge-text-color: white;
+    --slds-c-badge-icon-color-foreground: white;}

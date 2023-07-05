@@ -1,0 +1,30 @@
+<!--
+ - Created by mrhazzoul on 29/6/2023.
+ -->
+
+<!-- Technical Session Card -->
+<template>
+    <div class="slds-m-bottom_x-small">
+        <div class="divider"></div>
+    </div>
+    <lightning-layout class="card-container">
+        <lightning-layout-item size="2">
+            <lightning-formatted-date-time value={technicalSession.date}></lightning-formatted-date-time>
+        </lightning-layout-item>
+        <lightning-layout-item size="8">
+            <div class="slds-m-bottom_x-small session-title">
+                {technicalSession.title}
+            </div>
+            <div>
+                <lightning-avatar class="slds-m-right_xx-small" variant="circle" src={technicalSession.presenterImage}
+                                  alternative-text={technicalSession.presenterName} size="large"></lightning-avatar>
+                <span class="presenter-name">{technicalSession.presenterName}</span>
+            </div>
+        </lightning-layout-item>
+        <lightning-layout-item size="2">
+            <div class="slds-grid">
+                <lightning-badge label={technicalSession.status} icon-name={iconName} class={badgeClassNames}></lightning-badge> 
+            </div>
+        </lightning-layout-item>
+    </lightning-layout>
+</template>
