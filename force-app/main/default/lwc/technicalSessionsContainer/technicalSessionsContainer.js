@@ -6,10 +6,14 @@ import {LightningElement, wire} from 'lwc';
 import {graphql, gql} from "lightning/uiGraphQLApi";
 import {TECHNICAL_SESSION_FIELDS_FRAGMENT} from "c/graphqlFragments";
 
+// The delay used when debouncing event handlers before invoking GraphQL.
+const DELAY = 300;
+
 export default class TechnicalSessionsContainer extends LightningElement {
     _technicalSessions = [];
     presenterOrSessionName = "%";
     isLoading;
+    delayTimeout;
     
     
     options = [
@@ -87,7 +91,13 @@ export default class TechnicalSessionsContainer extends LightningElement {
     }
     
     handlePresenterNameChange(event) {
-        this.presenterOrSessionName = event.target.value;
+        // Debouncing this method: Do not update the reactive property as long as this function is
+        // being called within a delay of DELAY. This is to avoid a very large number of GraphQL method calls.
+        const searchKey = event.target.value;
+        window.clearTimeout(this.delayTimeout);
+        this.delayTimeout = setTimeout(() => {
+            this.presenterOrSessionName = searchKey;
+        }, DELAY);
     }
     
     get variables() {
